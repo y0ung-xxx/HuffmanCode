@@ -26,15 +26,26 @@ double calculateCompressionRatio(const std::string &originalFile, const std::str
     return compressionRatio;
 }
 
-int main()
+int main(int argc, char const *argv[])
 {
     // std::string originalFile = "test01.txt";
     // std::string compressedFile = "test01.txt.huffman";
     // std::string originalFile = "test02.txt";
     // std::string compressedFile = "test02.txt.huffman";
-    std::string originalFile = "test03.txt";
-    std::string compressedFile = "test03.txt.huffman";
-    
+    // std::string originalFile = "test03.txt";
+    // std::string compressedFile = "test03.txt.huffman"; 
+    // std::string originalFile = "test04.txt";
+    // std::string compressedFile = "test04.txt.huffman";
+
+    if (argc != 2)
+    {
+        std::cout << "Usage: " << argv[0] << " <原始文件名称>" << std::endl;
+        return 1;
+    }
+
+    std::string originalFile = argv[1];
+    std::string compressedFile = argv[1]+std::string(".huffman");
+
     double compressionRatio = calculateCompressionRatio(originalFile, compressedFile);
     std::cout << "Compression Ratio: " << compressionRatio << "%" << std::endl;
     return 0;

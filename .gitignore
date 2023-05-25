@@ -1,9 +1,13 @@
 
 Compressor
 *.huffman
-*.txt
 *.json
+new_*
 cal
 Decompressor.exe
 Compressor.exe
 cal.exe
+extract
+archive
+Decompressor
+Decompressor

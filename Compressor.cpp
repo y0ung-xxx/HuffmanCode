@@ -29,13 +29,20 @@ void generateCodeTable(Node *root, string code, map<char, string> &codeTable);
 string compressText(const string &rawText, const map<char, string> &codeTable);
 void generateCopressedFile(const string &compressedText, const map<char, string> &codeTable, const string &filename);
 
-int main()
+int main(int argc, char *argv[])
 {
     // string fileName = "test01.txt";
     // string fileName = "test02.txt";
-    string fileName = "test03.txt";
+    // string fileName = "test03.txt";
     // string fileName = "test04.txt";
 
+    if (argc != 2)
+    {
+        std::cout << "Usage: " << argv[0] << " <待压缩文本文件名>" << endl;
+        return 1;
+    }
+
+    string fileName = argv[1];
     string rawText;
     ifstream inputFile(fileName);
     if (!inputFile.is_open())
@@ -49,8 +56,8 @@ int main()
 
     // 统计字符频率
     map<char, int> frequencies = countFrequencies(rawText);
-    for (auto item : frequencies)
-        std::cout << item.first << ':' << item.second << endl;
+    // for (auto item : frequencies)
+    //     std::cout << item.first << ':' << item.second << endl;
 
     // 构建哈夫曼树
     Node *root = buildHuffmanTree(frequencies);
@@ -58,13 +65,13 @@ int main()
     // 生成编码表
     map<char, string> codeTable;
     generateCodeTable(root, "", codeTable);
-    cout << codeTable.size() << endl;
+    // cout << codeTable.size() << endl;
     // for (auto item : codeTable)
     //     std::cout << item.first << ':' << item.second << endl;
 
     // 压缩文本
     string compressedText = compressText(rawText, codeTable);
-    std::cout << compressedText << endl;
+    // std::cout << compressedText << endl;
 
     // 生成压缩文件
     generateCopressedFile(compressedText, codeTable, fileName + ".huffman");
@@ -196,5 +203,5 @@ void generateCopressedFile(const string &compressedText, const map<char, string>
     }
 
     outputFile.close();
-    cout << "Compression completed. File save as: " << filename << endl;
+    cout << "Compression completed. File saved as: " << filename << endl;
 }

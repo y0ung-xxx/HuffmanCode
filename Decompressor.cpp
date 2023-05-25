@@ -20,7 +20,7 @@ string decompressText(const string &compressedText, Node *root);
 
 void generateDecompressedFile(const string &text, const string &filename);
 
-int main()
+int main(int argc, char *argv[])
 {
     // string compressedFilename = "test01.txt.huffman";
     // string decompressedFilename = "new_test01.txt";
@@ -28,12 +28,19 @@ int main()
     // string compressedFilename = "test02.txt.huffman";
     // string decompressedFilename = "new_test02.txt";
 
-    string compressedFilename = "test03.txt.huffman";
-    string decompressedFilename = "new_test03.txt";
+    // string compressedFilename = "test03.txt.huffman";
+    // string decompressedFilename = "new_test03.txt";
 
     // string compressedFilename = "test04.txt.huffman";
     // string decompressedFilename = "new_test04.txt";
 
+    if (argc != 2)
+    {
+        cout << "Usage: " << argv[0] << " <待解压缩文件名>" << endl;
+        return 1;
+    }
+    string compressedFilename = argv[1];
+    string decompressedFilename = "new_"+compressedFilename.substr(0, compressedFilename.find_last_of('.'));
     decompressFile(compressedFilename, decompressedFilename);
 
     return 0;
@@ -50,23 +57,23 @@ void decompressFile(const string &compressedFilename, const string &decompressed
 
     // 读取编码表
     map<char, string> codeTable = readCodeTable(file);
-    for (auto item : codeTable)
-        cout << item.first << ':' << item.second << endl;
+    // for (auto item : codeTable)
+    //     cout << item.first << ':' << item.second << endl;
 
     // 根据codeTable建树
     Node *root = buildHuffmanTree(codeTable);
 
     // 读取压缩文本
     string decompressedText = readCompressedText(file);
-    cout << decompressedText << endl;
+    // cout << decompressedText << endl;
 
     // 根据huffman树 转换
     string Text = decompressText(decompressedText, root);
-    cout << Text << endl;
+    // cout << Text << endl;
 
     // 生成文件
     generateDecompressedFile(Text, decompressedFilename);
-    cout << "Decompress file: " << compressedFilename << " to " << decompressedFilename << endl;
+    cout << "Decompression completed. File saved as: " << decompressedFilename << endl;
     file.close();
 }
 
