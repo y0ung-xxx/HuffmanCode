@@ -31,9 +31,9 @@ void generateCopressedFile(const string &compressedText, const map<char, string>
 
 int main()
 {
-    string fileName = "test01.txt";
+    // string fileName = "test01.txt";
     // string fileName = "test02.txt";
-    // string fileName = "test03.txt";
+    string fileName = "test03.txt";
     // string fileName = "test04.txt";
 
     string rawText;

@@ -3,3 +3,7 @@ Compressor
 *.huffman
 *.txt
 *.json
+cal
+Decompressor.exe
+Compressor.exe
+cal.exe
