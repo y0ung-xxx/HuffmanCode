@@ -6,7 +6,7 @@ archive : Compressor.cpp
 extract : Decompressor.cpp
 	g++ Decompressor.cpp -o extract
 
-cal : cal.cpp
+calc_rate : calc_rate.cpp
 	g++ cal.cpp -o cal
 
 clean :
