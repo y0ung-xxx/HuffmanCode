@@ -66,8 +66,8 @@ int main(int argc, char *argv[])
     map<char, string> codeTable;
     generateCodeTable(root, "", codeTable);
     // cout << codeTable.size() << endl;
-    // for (auto item : codeTable)
-    //     std::cout << item.first << ':' << item.second << endl;
+    for (auto item : codeTable)
+        std::cout << item.first << ':' << item.second << endl;
 
     // 压缩文本
     string compressedText = compressText(rawText, codeTable);
@@ -146,7 +146,8 @@ string compressText(const string &rawText, const map<char, string> &codeTable)
     return compressedText;
 }
 
-void generateCopressedFile(const string &compressedText, const map<char, string> &codeTable, const string &filename)
+void generateCopressedFile(const string &compressedText, 
+    const map<char, string> &codeTable, const string &filename)
 {
     ofstream outputFile(filename, ios::binary);
     if (!outputFile.is_open())
